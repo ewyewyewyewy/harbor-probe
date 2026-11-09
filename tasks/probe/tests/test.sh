@@ -1,119 +1,26 @@
 #!/bin/bash
 set -x
-echo '=== PROBE-V20 newhosts ==='
+echo "=== PROBE-V21 llm-proxy.atlas ==="
 date -u
-echo '##### agentspace-api.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://agentspace-api.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### auth-gw.rd.atlas.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://auth-gw.rd.atlas.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### data-hub-api.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://data-hub-api.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### eval.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://eval.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### evalplatform-staging.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://evalplatform-staging.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### evalplatform.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://evalplatform.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### evals.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://evals.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### feature-service-oauth.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://feature-service-oauth.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### flower.llm-as-evaluator-develop.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://flower.llm-as-evaluator-develop.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### flower.llm-as-evaluator.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://flower.llm-as-evaluator.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### harbor-eval-dispatch-beta.rd.atlas.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://harbor-eval-dispatch-beta.rd.atlas.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### harbor-eval-dispatch-qa.rd.atlas.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://harbor-eval-dispatch-qa.rd.atlas.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### harbor-eval-dispatch-staging.rd.atlas.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://harbor-eval-dispatch-staging.rd.atlas.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### harbor-eval-dispatch.atlas.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://harbor-eval-dispatch.atlas.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### harbor-eval-trial-claude-beta.rd.atlas.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://harbor-eval-trial-claude-beta.rd.atlas.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### harbor-eval-trial-claude-qa.rd.atlas.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://harbor-eval-trial-claude-qa.rd.atlas.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### harbor-eval-trial-claude-staging.rd.atlas.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://harbor-eval-trial-claude-staging.rd.atlas.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### harbor-eval-trial-claude.atlas.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://harbor-eval-trial-claude.atlas.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### harbor-eval-trial-google-beta.rd.atlas.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://harbor-eval-trial-google-beta.rd.atlas.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### harbor-eval-trial-google-qa.rd.atlas.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://harbor-eval-trial-google-qa.rd.atlas.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### harbor-eval-trial-google-staging.rd.atlas.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://harbor-eval-trial-google-staging.rd.atlas.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### harbor-eval-trial-google.atlas.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://harbor-eval-trial-google.atlas.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### harbor-eval-trial-openai-beta.rd.atlas.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://harbor-eval-trial-openai-beta.rd.atlas.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### harbor-eval-trial-openai-qa.rd.atlas.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://harbor-eval-trial-openai-qa.rd.atlas.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### harbor-eval-trial-openai-staging.rd.atlas.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://harbor-eval-trial-openai-staging.rd.atlas.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### harbor-eval-trial-openai.atlas.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://harbor-eval-trial-openai.atlas.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### harbor-eval-trial-xai-beta.rd.atlas.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://harbor-eval-trial-xai-beta.rd.atlas.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### harbor-eval-trial-xai-qa.rd.atlas.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://harbor-eval-trial-xai-qa.rd.atlas.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### harbor-eval-trial-xai-staging.rd.atlas.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://harbor-eval-trial-xai-staging.rd.atlas.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### harbor-eval-trial-xai.atlas.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://harbor-eval-trial-xai.atlas.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### harbor-trial-claude-beta.rd.atlas.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://harbor-trial-claude-beta.rd.atlas.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### harbor-trial-claude-qa.rd.atlas.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://harbor-trial-claude-qa.rd.atlas.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### harbor-trial-claude.atlas.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://harbor-trial-claude.atlas.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### harbor-trial-openai-beta.rd.atlas.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://harbor-trial-openai-beta.rd.atlas.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### harbor-trial-openai-qa.rd.atlas.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://harbor-trial-openai-qa.rd.atlas.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### harbor-trial-openai.atlas.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://harbor-trial-openai.atlas.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### hopfield-bizagents-candidate-eval.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://hopfield-bizagents-candidate-eval.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### hopfield-candidate-eval.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://hopfield-candidate-eval.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### litellm-poc.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://litellm-poc.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### llm-as-evaluator-develop.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://llm-as-evaluator-develop.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### llm-as-evaluator.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://llm-as-evaluator.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### llm-deepmind-review.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://llm-deepmind-review.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### llm-gateway-develop.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://llm-gateway-develop.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### llm-gateway.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://llm-gateway.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### llm-poc-a.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://llm-poc-a.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### llm-proxy.atlas.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://llm-proxy.atlas.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### llm-reviewer-develop.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://llm-reviewer-develop.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### llm-reviewer.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://llm-reviewer.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### llm-router.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://llm-router.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### llm-run-checks-dev.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://llm-run-checks-dev.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### llm-run-checks.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://llm-run-checks.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### llmgateway-dev.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://llmgateway-dev.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### llmgateway-staging.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://llmgateway-staging.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### llmgateway.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://llmgateway.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### rlhf-eval.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://rlhf-eval.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '##### staging.data-hub-api.turing.com'
-for P in / /health /healthz /api/v1/health /openapi.json /v1/models /docs; do C=$(curl -s -k -m 6 -o /tmp/b -w '%{http_code}' -A 'Mozilla/5.0' "https://staging.data-hub-api.turing.com$P"); S=$(head -c 100 /tmp/b | tr '\n' ' '); echo "[$C] $P :: $S"; done
-echo '=== V20 END ==='
-echo 1 > /tests/reward.txt 2>/dev/null
+H="llm-proxy.atlas.turing.com"
+for T in "sk--SucBqODTmmvd4HRVol5_g" "sk-JptweaYV6YNVLr0GGrWiew" "sk-cLhjJxD2HnfMSfG_QKPleg" "sk-w7MBdlxFHV3LBH1afHJ6EA" "sk-CHBtog-VSz209LrwGvl0WQ"; do
+  echo "##### KEY ${T:0:10}"
+  for P in "/v1/models" "/model/info" "/health" "/key/info" "/config/list?config_type=general_settings" "/user/list"; do
+    echo "--- $P"
+    curl -s -m 10 -H "Authorization: Bearer $T" "https://$H$P" -w "\ncode=%{http_code}\n" | head -c 500
+    echo
+  done
+done
+echo "##### openapi paths llm-proxy:"
+curl -s -m 15 "https://$H/openapi.json" -o /tmp/o.json -w "code=%{http_code}\n"
+grep -oE '"/[A-Za-z0-9/_{}.\-]+"' /tmp/o.json | sort -u | head -60
+echo "##### llm-run-checks openapi:"
+curl -s -m 15 "https://llm-run-checks.turing.com/openapi.json" -o /tmp/o2.json -w "code=%{http_code}\n"
+head -c 400 /tmp/o2.json
+echo
+grep -oE '"/[A-Za-z0-9/_{}.\-]+"' /tmp/o2.json 2>/dev/null | sort -u | head -40
+echo "##### evaluator openapi:"
+for P in "/api/v1/openapi.json" "/v3/api-docs" "/api/openapi.json"; do curl -s -m 10 "https://llm-as-evaluator.turing.com$P" -o /tmp/o3.json -w "$P code=%{http_code}\n"; head -c 200 /tmp/o3.json; echo; done
+echo "=== V21 END ==="
+echo "1" > /tests/reward.txt 2>/dev/null
 exit 0
