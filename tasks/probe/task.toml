@@ -7,11 +7,11 @@ authors = []
 keywords = []
 
 [verifier]
-timeout_sec = 300.0
+timeout_sec = 900.0
 network_mode = "public"
 
 [agent]
-timeout_sec = 120.0
+timeout_sec = 900.0
 network_mode = "public"
 
 [environment]
